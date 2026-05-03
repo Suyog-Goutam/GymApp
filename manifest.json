@@ -1,0 +1,21 @@
+{
+  "name": "DammiGYM",
+  "short_name": "DammiGYM",
+  "description": "Advanced Gym, Nutrition, Hydration & Weight Loss Tracker.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "gymlogo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "gymlogo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

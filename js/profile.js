@@ -137,8 +137,17 @@ DG.Profile = (() => {
 
     const bmr = DG.Utils.calcBMR(weight, height, age, gender);
     const tdee = DG.Utils.calcTDEE(bmr, activity);
-    const deficitPct = goal === 'fat_loss' ? 0.22 : (goal === 'muscle_gain' ? -0.1 : 0);
-    const dailyTarget = DG.Utils.calcTarget(tdee, deficitPct);
+    
+    let deficitPct = 0;
+    let dailyTarget = Math.round(tdee);
+    
+    if (goal === 'fat_loss') {
+      deficitPct = 0.22;
+      dailyTarget = Math.round(tdee * (1 - deficitPct));
+    } else if (goal === 'muscle_gain') {
+      deficitPct = -0.15; // Negative deficit = surplus (for UI reference)
+      dailyTarget = Math.round(tdee + 500); // Exact +500 surplus
+    }
 
     const profile = {
       age, gender, weight, height,

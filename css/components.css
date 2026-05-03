@@ -230,6 +230,9 @@
 .user-detail-stat .stat-val{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--primary)}
 .user-detail-stat .stat-lbl{font-size:.6rem;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
 
+/* --- Drag and Drop --- */
+.drag-over{border-color:var(--primary) !important; background:rgba(255,26,26,0.05)}
+
 /* --- Mobile overflow fix --- */
 @media(max-width:767px){
   .page-content{padding:12px 16px;overflow-x:hidden}

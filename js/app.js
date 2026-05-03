@@ -3,6 +3,26 @@ window.DG = window.DG || {};
 
 DG.App = (() => {
   const appEl = () => document.getElementById('app');
+  let deferredPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
+  function installApp() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        } else {
+          console.log('User dismissed the install prompt');
+        }
+        deferredPrompt = null;
+      });
+    }
+  }
 
   // --- Auth Page Renderers ---
   function renderLogin() {
@@ -301,9 +321,10 @@ DG.App = (() => {
       <div class="card mt-md" style="padding:12px;text-align:center;border-color:var(--border-red)">
         <div class="card-label">Daily Target</div>
         <div style="font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--primary)">${p.dailyCalories} kcal</div>
-        <div style="font-size:.75rem;color:var(--text3)">${p.deficitPct}% deficit for ${p.goal.replace('_', ' ')}</div>
+        <div style="font-size:.75rem;color:var(--text3)">${p.goal === 'muscle_gain' ? '+500 kcal surplus for muscle gain' : (p.deficitPct + '% deficit for ' + p.goal.replace('_', ' '))}</div>
       </div>
       ${titleSelectionSection}
+      ${deferredPrompt ? `<button class="btn btn-primary btn-block mt-md" onclick="DG.App.installApp()"><span style="font-size:1.2rem">⬇️</span> Install App</button>` : ''}
     `, `
       <button class="btn btn-ghost" onclick="DG.UI.closeModal()">Close</button>
       <button class="btn btn-danger btn-sm" onclick="DG.App.doLogout();DG.UI.closeModal()">Logout</button>
@@ -325,6 +346,15 @@ DG.App = (() => {
   function init() {
     window.addEventListener('hashchange', route);
     route();
+
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => {
+          console.error('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
   }
 
   // Start on DOM ready
@@ -334,5 +364,5 @@ DG.App = (() => {
     init();
   }
 
-  return { init, refresh, doLogin, doRegister, doLogout, showProfile, selectTitle };
+  return { init, refresh, doLogin, doRegister, doLogout, showProfile, selectTitle, installApp };
 })();

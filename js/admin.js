@@ -36,7 +36,16 @@ DG.Admin = (() => {
     let html = `<button class="btn btn-primary btn-sm mb-lg" onclick="DG.Admin.showAddExercise()">+ Add Exercise</button>`;
 
     for (const [group, exs] of Object.entries(groups)) {
-      html += `<h4 class="mb-sm mt-lg" style="color:var(--text2)">${group}</h4>`;
+      const dayNum = exs[0].day;
+      html += `
+        <div class="day-group" draggable="true" 
+             ondragstart="event.dataTransfer.setData('text/plain', ${dayNum})"
+             ondragover="event.preventDefault(); this.classList.add('drag-over')"
+             ondragleave="this.classList.remove('drag-over')"
+             ondrop="event.preventDefault(); this.classList.remove('drag-over'); DG.Admin.handleDayDrop(event, ${dayNum})"
+             style="border:1px solid transparent; border-radius:8px; padding:4px; transition:border-color 0.2s;">
+          <h4 class="mb-sm mt-lg" style="color:var(--text2);cursor:grab" title="Drag to swap days">≡ ${group}</h4>
+      `;
       html += exs.map(ex => `
         <div class="log-item">
           <div style="flex:1">
@@ -53,6 +62,7 @@ DG.Admin = (() => {
           </div>
         </div>
       `).join('');
+      html += `</div>`;
     }
     return html;
   }
@@ -246,7 +256,15 @@ DG.Admin = (() => {
     });
   }
 
+  function handleDayDrop(e, targetDay) {
+    const sourceDay = e.dataTransfer.getData('text/plain');
+    if (!sourceDay || parseInt(sourceDay) === parseInt(targetDay)) return;
+    DG.Exercises.swapDays(sourceDay, targetDay);
+    DG.UI.toast(`Swapped Day ${sourceDay} with Day ${targetDay}`, 'success');
+    DG.App.refresh();
+  }
+
   function init() {}
 
-  return { render, init, switchTab, showAddExercise, editExercise, saveExercise, deleteExercise, clearUserData, deleteUser };
+  return { render, init, switchTab, showAddExercise, editExercise, saveExercise, deleteExercise, clearUserData, deleteUser, handleDayDrop };
 })();

@@ -115,6 +115,20 @@ DG.Exercises = (() => {
     saveAll(all);
   }
 
+  // Swap all exercises between two days
+  function swapDays(dayA, dayB) {
+    dayA = parseInt(dayA);
+    dayB = parseInt(dayB);
+    if (isNaN(dayA) || isNaN(dayB) || dayA === dayB) return;
+    
+    const all = getAll();
+    all.forEach(ex => {
+      if (ex.day === dayA) ex.day = dayB;
+      else if (ex.day === dayB) ex.day = dayA;
+    });
+    saveAll(all);
+  }
+
   // Priority badge HTML
   function priorityBadge(priority) {
     const map = {
@@ -127,5 +141,5 @@ DG.Exercises = (() => {
     return `<span class="badge ${p.cls}">${p.icon} ${p.label}</span>`;
   }
 
-  return { getAll, saveAll, getByDay, getForToday, save, remove, priorityBadge, DEFAULT_EXERCISES };
+  return { getAll, saveAll, getByDay, getForToday, save, remove, swapDays, priorityBadge, DEFAULT_EXERCISES };
 })();
