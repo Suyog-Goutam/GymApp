@@ -35,12 +35,12 @@ DG.Admin = (() => {
 
     let html = `<button class="btn btn-primary btn-sm mb-lg" onclick="DG.Admin.showAddExercise()">+ Add Exercise</button>`;
 
-    const sortedGroups = Object.entries(groups).sort((a, b) => a[1][0].day - b[1][0].day);
+    const sortedGroups = Object.entries(groups).sort((a, b) => parseInt(a[1][0].day) - parseInt(b[1][0].day));
 
     for (const [group, exs] of sortedGroups) {
-      const dayNum = exs[0].day;
+      const dayNum = parseInt(exs[0].day);
       
-      const dayOptions = [1, 2, 3, 4, 5, 6, 7]
+      const dayOptions = [1, 2, 3, 4, 5, 6]
         .filter(d => d !== dayNum)
         .map(d => `<option value="${d}">Day ${d}</option>`)
         .join('');

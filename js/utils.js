@@ -43,18 +43,17 @@ DG.Utils = (() => {
   const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   function dayName(idx) { return DAY_NAMES[idx]; }
 
-  // Workout split mapping (0=Sun to 6=Sat)
-  const SPLITS = [
-    'Chest + Triceps',    // Sunday
-    'Back + Biceps',      // Monday
-    'Shoulders + Abs',    // Tuesday
-    'Chest + Triceps',    // Wednesday
-    'Back + Biceps',      // Thursday
-    'Legs',               // Friday
-    'Rest'                // Saturday
-  ];
-  function todaySplit() { return SPLITS[getDayOfWeek()]; }
-  function getSplit(dayIdx) { return SPLITS[dayIdx]; }
+  // Workout split mapping (Dynamic from DB)
+  function todaySplit() { return getSplit(getDayOfWeek()); }
+  function getSplit(dayIdx) { 
+    if (window.DG && DG.Exercises) {
+      const exs = DG.Exercises.getByDay(dayIdx);
+      if (exs && exs.length > 0) {
+        return exs[0].split;
+      }
+    }
+    return 'Rest';
+  }
 
   // BMR (Mifflin-St Jeor)
   function calcBMR(weight, height, age, gender) {
@@ -125,7 +124,7 @@ DG.Utils = (() => {
 
   return {
     sanitize, today, formatDate, formatTime, formatNum, getDayOfWeek, dayName,
-    SPLITS, todaySplit, getSplit, calcBMR, calcTDEE, calcTarget, calcCaloriesBurned,
+    todaySplit, getSplit, calcBMR, calcTDEE, calcTarget, calcCaloriesBurned,
     calcBMI, bmiCategory, isValidNum, lastNDays, debounce, ACTIVITY_MULTIPLIERS
   };
 })();
