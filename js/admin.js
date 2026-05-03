@@ -35,16 +35,25 @@ DG.Admin = (() => {
 
     let html = `<button class="btn btn-primary btn-sm mb-lg" onclick="DG.Admin.showAddExercise()">+ Add Exercise</button>`;
 
-    for (const [group, exs] of Object.entries(groups)) {
+    const sortedGroups = Object.entries(groups).sort((a, b) => a[1][0].day - b[1][0].day);
+
+    for (const [group, exs] of sortedGroups) {
       const dayNum = exs[0].day;
+      
+      const dayOptions = [1, 2, 3, 4, 5, 6, 7]
+        .filter(d => d !== dayNum)
+        .map(d => `<option value="${d}">Day ${d}</option>`)
+        .join('');
+
       html += `
-        <div class="day-group" draggable="true" 
-             ondragstart="event.dataTransfer.setData('text/plain', ${dayNum})"
-             ondragover="event.preventDefault(); this.classList.add('drag-over')"
-             ondragleave="this.classList.remove('drag-over')"
-             ondrop="event.preventDefault(); this.classList.remove('drag-over'); DG.Admin.handleDayDrop(event, ${dayNum})"
-             style="border:1px solid transparent; border-radius:8px; padding:4px; transition:border-color 0.2s;">
-          <h4 class="mb-sm mt-lg" style="color:var(--text2);cursor:grab" title="Drag to swap days">≡ ${group}</h4>
+        <div class="day-group" style="border:1px solid transparent; border-radius:8px; padding:4px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h4 class="mb-sm mt-lg" style="color:var(--text2)">${group}</h4>
+            <select class="form-input form-select" style="width:auto; padding:4px 8px; font-size:0.8rem; height:auto; margin-top:12px" onchange="DG.Admin.handleDaySwap(${dayNum}, this.value)">
+              <option value="" disabled selected>Move this session to day...</option>
+              ${dayOptions}
+            </select>
+          </div>
       `;
       html += exs.map(ex => `
         <div class="log-item">
@@ -256,9 +265,8 @@ DG.Admin = (() => {
     });
   }
 
-  function handleDayDrop(e, targetDay) {
-    const sourceDay = e.dataTransfer.getData('text/plain');
-    if (!sourceDay || parseInt(sourceDay) === parseInt(targetDay)) return;
+  function handleDaySwap(sourceDay, targetDay) {
+    if (!sourceDay || !targetDay) return;
     DG.Exercises.swapDays(sourceDay, targetDay);
     DG.UI.toast(`Swapped Day ${sourceDay} with Day ${targetDay}`, 'success');
     DG.App.refresh();
@@ -266,5 +274,5 @@ DG.Admin = (() => {
 
   function init() {}
 
-  return { render, init, switchTab, showAddExercise, editExercise, saveExercise, deleteExercise, clearUserData, deleteUser, handleDayDrop };
+  return { render, init, switchTab, showAddExercise, editExercise, saveExercise, deleteExercise, clearUserData, deleteUser, handleDaySwap };
 })();
