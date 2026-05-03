@@ -1,0 +1,36 @@
+/* DammiGYM — Animations */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideOutRight{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(100%)}}
+@keyframes slideInUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(255,26,26,0.2)}50%{box-shadow:0 0 40px rgba(255,26,26,0.5)}}
+@keyframes wave{0%,100%{transform:translateY(0) scaleX(1)}50%{transform:translateY(-3px) scaleX(1.05)}}
+@keyframes countUp{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+@keyframes borderGlow{0%,100%{border-color:rgba(255,26,26,0.2)}50%{border-color:rgba(255,26,26,0.6)}}
+.animate-fadeIn{animation:fadeIn .4s ease}
+.animate-fadeUp{animation:fadeUp .4s ease}
+.animate-scaleIn{animation:scaleIn .3s ease}
+.animate-pulse{animation:pulse 2s ease-in-out infinite}
+.animate-glow{animation:glowPulse 3s ease-in-out infinite}
+.animate-border-glow{animation:borderGlow 2s ease-in-out infinite}
+/* Staggered children animation */
+.stagger>*{opacity:0;animation:fadeUp .4s ease forwards}
+.stagger>*:nth-child(1){animation-delay:.05s}
+.stagger>*:nth-child(2){animation-delay:.1s}
+.stagger>*:nth-child(3){animation-delay:.15s}
+.stagger>*:nth-child(4){animation-delay:.2s}
+.stagger>*:nth-child(5){animation-delay:.25s}
+.stagger>*:nth-child(6){animation-delay:.3s}
+.stagger>*:nth-child(7){animation-delay:.35s}
+.stagger>*:nth-child(8){animation-delay:.4s}
+/* Skeleton loading */
+.skeleton{background:linear-gradient(90deg,rgba(255,255,255,0.03) 25%,rgba(255,255,255,0.08) 50%,rgba(255,255,255,0.03) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--radius);min-height:20px}
+.skeleton-text{height:14px;margin-bottom:8px;border-radius:4px}
+.skeleton-title{height:24px;width:60%;margin-bottom:12px}
+.skeleton-card{height:120px;margin-bottom:16px}

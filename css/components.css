@@ -1,0 +1,243 @@
+/* DammiGYM — Component Styles */
+
+/* --- Cards --- */
+.card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:20px;transition:all .25s ease;position:relative;overflow:hidden}
+.card:hover{border-color:var(--border-red);box-shadow:0 0 20px rgba(255,26,26,0.1)}
+.card-glow{box-shadow:0 0 30px var(--glow)}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.card-title{font-size:1rem;font-weight:600;color:var(--text)}
+.card-value{font-family:var(--font-display);font-size:1.75rem;font-weight:700;color:var(--primary)}
+.card-label{font-size:.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* --- Buttons --- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:.9rem;transition:all .25s ease;position:relative;overflow:hidden;white-space:nowrap}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 0 20px rgba(255,26,26,0.3)}
+.btn-primary:hover{background:#ff3333;box-shadow:0 0 30px rgba(255,26,26,0.5);transform:translateY(-1px)}
+.btn-primary:active{transform:translateY(0);box-shadow:0 0 10px rgba(255,26,26,0.2)}
+.btn-secondary{background:transparent;color:var(--primary);border:1px solid var(--border-red)}
+.btn-secondary:hover{background:var(--glow-subtle);border-color:var(--primary)}
+.btn-ghost{background:transparent;color:var(--text2);padding:8px 16px}
+.btn-ghost:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+.btn-danger{background:#441111;color:var(--error);border:1px solid rgba(255,68,68,0.3)}
+.btn-danger:hover{background:#551515;border-color:var(--error)}
+.btn-sm{padding:8px 16px;font-size:.8rem;border-radius:8px}
+.btn-lg{padding:16px 32px;font-size:1rem}
+.btn-block{width:100%;display:flex}
+.btn-icon{width:40px;height:40px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.btn:disabled{opacity:.4;cursor:not-allowed;pointer-events:none}
+
+/* --- Inputs --- */
+.form-group{margin-bottom:16px}
+.form-label{display:block;font-size:.8rem;color:var(--text2);margin-bottom:6px;font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+.form-input{width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);border-radius:var(--radius);color:var(--text);font-size:.95rem;transition:all .25s ease}
+.form-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,26,26,0.15);background:rgba(255,255,255,0.07)}
+.form-input::placeholder{color:var(--text3)}
+.form-input.error{border-color:var(--error);box-shadow:0 0 0 3px rgba(255,68,68,0.15)}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a0a0a0' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;max-width:100%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+.form-select option{background-color:var(--bg2);color:var(--text);max-width:100%}
+
+/* --- Progress Bars --- */
+.progress-bar{width:100%;height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;position:relative}
+.progress-fill{height:100%;border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1);position:relative}
+.progress-fill.red{background:linear-gradient(90deg,var(--primary-dim),var(--primary))}
+.progress-fill.green{background:linear-gradient(90deg,#00aa55,var(--success))}
+.progress-fill.blue{background:linear-gradient(90deg,#2266cc,var(--info))}
+.progress-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:shimmer 2s infinite}
+.progress-lg{height:16px;border-radius:var(--radius)}
+
+/* --- Badges --- */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.badge-must{background:rgba(255,26,26,0.15);color:#ff4444;border:1px solid rgba(255,26,26,0.3)}
+.badge-have{background:rgba(255,140,0,0.15);color:#ffaa33;border:1px solid rgba(255,140,0,0.3)}
+.badge-can{background:rgba(0,204,102,0.15);color:#00ee77;border:1px solid rgba(0,204,102,0.3)}
+.badge-skip{background:rgba(51,136,255,0.15);color:#5599ff;border:1px solid rgba(51,136,255,0.3)}
+
+/* --- Navigation (Bottom Mobile) --- */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border-top:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-around;z-index:200;padding:0 8px;padding-bottom:env(safe-area-inset-bottom)}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 12px;border-radius:var(--radius);color:var(--text3);font-size:.65rem;font-weight:500;transition:all .2s ease;min-width:56px}
+.nav-item.active{color:var(--primary)}
+.nav-item.active svg{filter:drop-shadow(0 0 6px var(--glow))}
+.nav-item svg{width:22px;height:22px;transition:all .2s ease}
+
+/* --- Side Nav (Desktop) --- */
+.side-nav{position:fixed;left:0;top:0;width:240px;height:100vh;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border-right:1px solid var(--glass-border);padding:24px 16px;z-index:200;display:none;flex-direction:column}
+.side-nav .nav-logo{font-family:var(--font-display);font-size:1.2rem;font-weight:900;color:var(--primary);padding:0 8px 24px;text-shadow:0 0 20px var(--glow);letter-spacing:1px}
+.side-nav-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--radius);color:var(--text2);font-size:.9rem;font-weight:500;transition:all .2s ease;margin-bottom:4px}
+.side-nav-item:hover{background:rgba(255,255,255,0.05);color:var(--text)}
+.side-nav-item.active{background:var(--glow-subtle);color:var(--primary);border:1px solid var(--border-red)}
+.side-nav-item svg{width:20px;height:20px}
+.side-nav-footer{margin-top:auto;padding-top:16px;border-top:1px solid var(--glass-border)}
+@media(min-width:768px){.side-nav{display:flex}.bottom-nav{display:none}}
+
+/* --- Modal --- */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:500;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:all .3s ease}
+.modal-overlay.active{opacity:1;visibility:visible}
+.modal-box{background:var(--bg2);border:1px solid var(--glass-border);border-radius:16px;padding:24px;width:100%;max-width:440px;max-height:85vh;overflow-y:auto;transform:scale(.9) translateY(20px);transition:all .3s cubic-bezier(.4,0,.2,1)}
+.modal-overlay.active .modal-box{transform:scale(1) translateY(0)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.modal-title{font-size:1.1rem;font-weight:700}
+.modal-close{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text3);transition:all .2s}
+.modal-close:hover{background:rgba(255,255,255,0.1);color:var(--text)}
+.modal-body{margin-bottom:20px}
+.modal-actions{display:flex;gap:12px;justify-content:flex-end}
+
+/* --- Toast --- */
+.toast-container{position:fixed;top:16px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:8px;max-width:380px;width:calc(100% - 32px)}
+.toast{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--glass-border);box-shadow:0 8px 32px rgba(0,0,0,0.4);animation:slideInRight .4s cubic-bezier(.4,0,.2,1);font-size:.9rem;font-weight:500}
+.toast.success{border-left:3px solid var(--success);color:var(--success)}
+.toast.error{border-left:3px solid var(--error);color:var(--error)}
+.toast.warning{border-left:3px solid var(--warning);color:var(--warning)}
+.toast.info{border-left:3px solid var(--info);color:var(--info)}
+.toast-exit{animation:slideOutRight .3s ease forwards}
+
+/* --- Confirm Dialog --- */
+.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);z-index:600;display:flex;align-items:center;justify-content:center;padding:24px}
+.confirm-box{background:var(--bg2);border:1px solid var(--border-red);border-radius:16px;padding:28px;width:100%;max-width:380px;text-align:center;animation:scaleIn .3s cubic-bezier(.4,0,.2,1)}
+.confirm-icon{width:48px;height:48px;margin:0 auto 16px;border-radius:50%;background:rgba(255,26,26,0.1);display:flex;align-items:center;justify-content:center;color:var(--primary)}
+.confirm-msg{font-size:1rem;font-weight:500;margin-bottom:8px;color:var(--text)}
+.confirm-sub{font-size:.85rem;color:var(--text2);margin-bottom:24px}
+.confirm-actions{display:flex;gap:12px;justify-content:center}
+
+/* --- Loading --- */
+.loading-overlay{position:fixed;inset:0;background:rgba(10,10,10,0.9);z-index:700;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+.spinner{width:40px;height:40px;border:3px solid var(--glass-border);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite}
+.loading-text{font-size:.9rem;color:var(--text2)}
+
+/* --- Stat Ring (SVG) --- */
+.stat-ring{position:relative;display:flex;align-items:center;justify-content:center}
+.stat-ring svg{transform:rotate(-90deg)}
+.stat-ring-label{position:absolute;display:flex;flex-direction:column;align-items:center}
+.stat-ring-value{font-family:var(--font-display);font-size:1.5rem;font-weight:700}
+.stat-ring-text{font-size:.7rem;color:var(--text3);text-transform:uppercase}
+
+/* --- Exercise Card --- */
+.exercise-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:16px;margin-bottom:16px;transition:all .3s ease}
+.exercise-card.completed{opacity:.6;border-color:var(--success)}
+.exercise-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:8px;flex-wrap:wrap}
+.exercise-name{font-size:.95rem;font-weight:600;word-break:break-word}
+.exercise-video{width:100%;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:var(--bg3);margin-bottom:12px;display:flex;align-items:center;justify-content:center;color:var(--text3);position:relative}
+.exercise-video iframe{width:100%;height:100%;border:none;position:absolute;inset:0}
+.exercise-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.exercise-inputs.cardio{grid-template-columns:1fr 1fr}
+.set-input{background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);border-radius:8px;padding:8px;text-align:center;font-size:.9rem;width:100%;min-width:0}
+.set-input:focus{border-color:var(--primary);box-shadow:0 0 0 2px rgba(255,26,26,0.15)}
+
+/* --- Workout Timer --- */
+.workout-timer{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--primary);text-align:center;text-shadow:0 0 30px var(--glow);letter-spacing:2px;padding:12px 0}
+
+/* --- Food/Water Items --- */
+.log-item{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);margin-bottom:8px;transition:all .2s;gap:8px}
+.log-item:hover{border-color:var(--border-red)}
+.log-item-name{font-weight:500;font-size:.9rem;word-break:break-word}
+.log-item-value{font-family:var(--font-display);font-weight:600;color:var(--primary);font-size:.9rem;white-space:nowrap}
+.log-item-delete{color:var(--text3);padding:4px;border-radius:50%;transition:all .2s;flex-shrink:0}
+.log-item-delete:hover{color:var(--error);background:rgba(255,68,68,0.1)}
+
+/* --- Quick Add Buttons (Hydration) --- */
+.quick-add{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.quick-add-btn{padding:10px 18px;border-radius:99px;background:var(--glass);border:1px solid var(--glass-border);font-weight:600;font-size:.85rem;color:var(--text2);transition:all .2s}
+.quick-add-btn:hover{border-color:var(--primary);color:var(--primary);background:var(--glow-subtle)}
+
+/* --- Profile Wizard --- */
+.wizard-step{display:none}
+.wizard-step.active{display:block;animation:fadeUp .4s ease}
+.wizard-progress{display:flex;gap:8px;margin-bottom:32px}
+.wizard-dot{flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,0.1);transition:background .3s}
+.wizard-dot.done{background:var(--primary)}
+.wizard-dot.current{background:var(--primary);box-shadow:0 0 10px var(--glow)}
+
+/* --- Gender Selector Cards --- */
+.gender-selector{display:flex;gap:12px;margin-bottom:16px}
+.gender-card{flex:1;padding:20px 16px;border-radius:var(--radius);border:2px solid var(--glass-border);background:var(--glass);text-align:center;cursor:pointer;transition:all .3s ease}
+.gender-card:hover{border-color:var(--border-red);background:var(--glow-subtle)}
+.gender-card.selected{border-color:var(--primary);background:var(--glow-subtle);box-shadow:0 0 20px rgba(255,26,26,0.15)}
+.gender-card .gender-icon{font-size:2.5rem;margin-bottom:8px;display:block}
+.gender-card .gender-label{font-weight:600;font-size:.9rem;color:var(--text2)}
+.gender-card.selected .gender-label{color:var(--primary)}
+
+/* --- Admin Table --- */
+.admin-table{width:100%;border-collapse:collapse}
+.admin-table th{text-align:left;padding:10px 12px;font-size:.75rem;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);border-bottom:1px solid var(--glass-border)}
+.admin-table td{padding:10px 12px;font-size:.85rem;border-bottom:1px solid rgba(255,255,255,0.03)}
+.admin-table tr:hover td{background:rgba(255,255,255,0.02)}
+
+/* --- Tabs --- */
+.tabs{display:flex;gap:4px;background:rgba(255,255,255,0.03);padding:4px;border-radius:var(--radius);margin-bottom:20px}
+.tab{flex:1;padding:10px;text-align:center;border-radius:8px;font-size:.85rem;font-weight:500;color:var(--text3);transition:all .2s;cursor:pointer}
+.tab.active{background:var(--primary);color:#fff;box-shadow:0 0 12px var(--glow)}
+
+/* --- Empty State --- */
+.empty-state{text-align:center;padding:48px 24px;color:var(--text3)}
+.empty-state svg{width:48px;height:48px;margin:0 auto 16px;opacity:.3}
+.empty-state p{font-size:.9rem}
+
+/* --- Water Glass Visual (Interactive) --- */
+.water-glass{width:120px;height:180px;border:3px solid var(--glass-border);border-radius:0 0 20px 20px;position:relative;overflow:hidden;margin:0 auto;cursor:pointer;transition:border-color .3s;user-select:none;-webkit-user-select:none}
+.water-glass:hover{border-color:rgba(51,136,255,0.5)}
+.water-glass.filling{border-color:var(--info);box-shadow:0 0 20px rgba(51,136,255,0.3)}
+.water-fill{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,rgba(51,136,255,0.4),rgba(51,136,255,0.7));transition:height .3s ease;border-radius:0 0 17px 17px}
+.water-fill::after{content:'';position:absolute;top:0;left:0;right:0;height:8px;background:rgba(255,255,255,0.2);border-radius:50%;animation:wave 2s ease-in-out infinite}
+.water-hint{font-size:.7rem;color:var(--text3);margin-top:8px;text-align:center;opacity:.6}
+
+/* --- Hydration page no-scroll --- */
+.page-hydration{overflow:hidden;display:flex;flex-direction:column}
+.page-hydration .page-content{overflow:hidden;flex:1;display:flex;flex-direction:column;justify-content:center}
+
+/* --- Achievement Badge --- */
+.achievement{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);margin-bottom:8px;transition:all .3s}
+.achievement.unlocked{border-color:var(--border-red);background:var(--glow-subtle)}
+.achievement-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:rgba(255,255,255,0.05);flex-shrink:0}
+.achievement.unlocked .achievement-icon{background:rgba(255,26,26,0.15)}
+.achievement-info{flex:1;min-width:0}
+.achievement-info h4{font-size:.9rem;font-weight:600}.achievement-info p{font-size:.75rem;color:var(--text3)}
+.achievement-reward{font-size:.65rem;padding:3px 8px;border-radius:99px;white-space:nowrap}
+.achievement-tier-bronze .achievement-icon{background:rgba(205,127,50,0.15);border:1px solid rgba(205,127,50,0.3)}
+.achievement-tier-silver .achievement-icon{background:rgba(192,192,192,0.15);border:1px solid rgba(192,192,192,0.3)}
+.achievement-tier-gold .achievement-icon{background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.3)}
+.achievement-tier-diamond .achievement-icon{background:rgba(185,242,255,0.15);border:1px solid rgba(185,242,255,0.3)}
+
+/* --- Cosmetic Glow Effects --- */
+.name-glow-red{text-shadow:0 0 10px rgba(255,26,26,0.6),0 0 20px rgba(255,26,26,0.3);color:#ff4444}
+.name-glow-gold{text-shadow:0 0 10px rgba(255,215,0,0.6),0 0 20px rgba(255,215,0,0.3);color:#ffd700}
+.name-glow-rainbow{background:linear-gradient(90deg,#ff1a1a,#ff8c00,#ffd700,#00cc66,#4488ff,#aa44ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(255,26,26,0.3));animation:rainbowShift 3s linear infinite;background-size:200% 100%}
+@keyframes rainbowShift{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.name-glow-diamond{text-shadow:0 0 12px rgba(185,242,255,0.8),0 0 24px rgba(185,242,255,0.4);color:#b9f2ff;animation:diamondPulse 2s ease-in-out infinite}
+@keyframes diamondPulse{0%,100%{text-shadow:0 0 12px rgba(185,242,255,0.8),0 0 24px rgba(185,242,255,0.4)}50%{text-shadow:0 0 20px rgba(185,242,255,1),0 0 40px rgba(185,242,255,0.6)}}
+
+/* --- Title Badges --- */
+.title-badge{font-size:.7rem;padding:2px 8px;border-radius:99px;display:inline-block;white-space:nowrap;font-weight:600;letter-spacing:.5px;border:1px solid}
+.title-badge-basic{color:var(--text2);background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.15)}
+.title-badge-bronze{color:#cd7f32;background:rgba(205,127,50,0.1);border-color:rgba(205,127,50,0.3)}
+.title-badge-silver{color:#c0c0c0;background:rgba(192,192,192,0.1);border-color:rgba(192,192,192,0.3)}
+.title-badge-gold{color:#ffd700;background:rgba(255,215,0,0.1);border-color:rgba(255,215,0,0.4);box-shadow:0 0 8px rgba(255,215,0,0.1)}
+.title-badge-diamond{color:#b9f2ff;background:rgba(185,242,255,0.1);border-color:rgba(185,242,255,0.5);box-shadow:0 0 12px rgba(185,242,255,0.2)}
+.title-badge-rainbow{background:linear-gradient(90deg,#ff1a1a,#ff8c00,#ffd700,#00cc66,#4488ff,#aa44ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;border-color:rgba(255,255,255,0.3);animation:rainbowShift 3s linear infinite;background-size:200% 100%;position:relative}
+.title-badge-rainbow::before{content:'';position:absolute;inset:-1px;border-radius:99px;padding:1px;background:linear-gradient(90deg,#ff1a1a,#ff8c00,#ffd700,#00cc66,#4488ff,#aa44ff);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:rainbowShift 3s linear infinite;background-size:200% 100%}
+
+/* --- Food Preset Chips --- */
+.preset-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.preset-chip{padding:6px 14px;border-radius:99px;background:var(--glass);border:1px solid var(--glass-border);font-size:.8rem;color:var(--text2);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.preset-chip:hover{border-color:var(--primary);color:var(--primary)}
+.preset-chip .chip-cal{font-size:.7rem;color:var(--text3)}
+.preset-chip-delete{font-size:.6rem;opacity:.5;margin-left:2px;cursor:pointer}
+.preset-chip-delete:hover{opacity:1;color:var(--error)}
+
+/* --- Admin User Detail Card --- */
+.user-detail-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+.user-detail-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px;flex-wrap:wrap}
+.user-detail-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.user-detail-stat{text-align:center;padding:8px;background:rgba(255,255,255,0.02);border-radius:8px}
+.user-detail-stat .stat-val{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--primary)}
+.user-detail-stat .stat-lbl{font-size:.6rem;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+/* --- Mobile overflow fix --- */
+@media(max-width:767px){
+  .page-content{padding:12px 16px;overflow-x:hidden}
+  .exercise-card{padding:14px}
+  .exercise-header{flex-direction:column;gap:4px}
+  .exercise-name{font-size:.9rem}
+  .workout-timer{font-size:1.8rem;padding:8px 0}
+  .grid-3{grid-template-columns:repeat(3,1fr);gap:8px}
+  .card{padding:16px}
+  .user-detail-stats{grid-template-columns:repeat(2,1fr)}
+}
