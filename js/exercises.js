@@ -83,6 +83,11 @@ DG.Exercises = (() => {
   function saveAll(exercises) {
     const encrypted = DG.Crypto.encrypt(JSON.stringify(exercises));
     localStorage.setItem('dg_exercises', encrypted);
+    
+    // Sync to cloud
+    if (window.DG && DG.Storage && typeof DG.Storage.syncToCloud === 'function') {
+      DG.Storage.syncToCloud('app', 'exercises', { list: exercises });
+    }
   }
 
   // Get exercises for a specific day (1-6, 0=any/cardio)
@@ -96,8 +101,7 @@ DG.Exercises = (() => {
     if (dayOfWeek === 6) return []; // Saturday rest
     // Map: Sun=0->day1, Mon=1->day2, ... Fri=5->day6
     const dayNum = dayOfWeek + 1;
-    // Sat wraps but we already returned
-    return getAll().filter(ex => ex.day === dayNum || ex.day === 0);
+    return getByDay(dayNum);
   }
 
   // Add or update exercise

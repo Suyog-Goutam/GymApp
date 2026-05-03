@@ -63,6 +63,12 @@ DG.Storage = (() => {
         });
       }
 
+      // Pull exercises
+      const exSnap = await db.collection('app').doc('exercises').get();
+      if (exSnap.exists && exSnap.data().list) {
+        localStorage.setItem('dg_exercises', DG.Crypto.encrypt(JSON.stringify(exSnap.data().list)));
+      }
+
       console.log('Firebase Sync Complete');
       if (window.DG && DG.App && typeof DG.App.refresh === 'function') DG.App.refresh();
     } catch(e) {
@@ -202,6 +208,6 @@ DG.Storage = (() => {
     getUsers, saveUsers, getUser, getUserById, addUser, updateUser, removeUser,
     getSession, setSession, clearSession,
     getLogs, saveLogs, addLog, getLogByDate, updateLogByDate, removeLogItem,
-    clearUserToday
+    clearUserToday, syncToCloud, deleteFromCloud
   };
 })();

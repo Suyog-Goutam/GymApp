@@ -47,7 +47,9 @@ DG.Utils = (() => {
   function todaySplit() { return getSplit(getDayOfWeek()); }
   function getSplit(dayIdx) { 
     if (window.DG && DG.Exercises) {
-      const exs = DG.Exercises.getByDay(dayIdx);
+      // JS getDay is 0-6 (Sun-Sat). Our DB exercises are 1-7.
+      const dbDay = parseInt(dayIdx) + 1;
+      const exs = DG.Exercises.getByDay(dbDay);
       if (exs && exs.length > 0) {
         return exs[0].split;
       }
